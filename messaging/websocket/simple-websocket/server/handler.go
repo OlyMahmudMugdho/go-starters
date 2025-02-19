@@ -49,12 +49,14 @@ func (s *WebSocketServer) readMessages(conn *websocket.Conn) {
 
 			for client := range s.Clients {
 				if client != conn { // Don't send the message back to the sender
-					err := client.WriteMessage(websocket.TextMessage, msg)
-					if err != nil {
-						log.Printf("Error sending message: %v", err)
-						client.Close()
-						delete(s.Clients, client)
-					}
+					s.Broadcast <- msg
+
+					/* 					err := client.WriteMessage(websocket.TextMessage, msg)
+					   					if err != nil {
+					   						log.Printf("Error sending message: %v", err)
+					   						client.Close()
+					   						delete(s.Clients, client)
+					   					} */
 				}
 			}
 		}(message)
