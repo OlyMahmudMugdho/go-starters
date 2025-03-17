@@ -12,6 +12,7 @@ func RegisterRoutes() *mux.Router {
 	pingHandler := handlers.NewPingHandler()
 	stringHandler := handlers.NewStringHandler()
 	hashHandler := handlers.NewHashHandler()
+	listHandler := handlers.NewListHandler()
 
 	router.HandleFunc("/ping", pingHandler.DoPing).Methods("GET")
 
@@ -22,6 +23,14 @@ func RegisterRoutes() *mux.Router {
 	router.HandleFunc("/hash/hset", hashHandler.HSet).Methods("POST")
 	router.HandleFunc("/hash/hget", hashHandler.HGet).Methods("GET")
 	router.HandleFunc("/hash/hdel", hashHandler.HDel).Methods("DELETE")
+
+	router.HandleFunc("/list/lpush", listHandler.LPush).Methods("POST")
+	router.HandleFunc("/list/lrange", listHandler.LRange).Methods("GET")
+	router.HandleFunc("/list/lpop", listHandler.LPop).Methods("DELETE")
+	router.HandleFunc("/list/rpush", listHandler.RPush).Methods("POST")
+	router.HandleFunc("/list/rpop", listHandler.RPop).Methods("DELETE")
+	router.HandleFunc("/list/llen", listHandler.LLen).Methods("GET")
+	router.HandleFunc("/list/lindex", listHandler.LIndex).Methods("GET")
 
 	return router
 }

@@ -18,3 +18,8 @@ type HashRequest struct {
 	Key   string      `json:"key"`
 	Value interface{} `json:"value"`
 }
+
+type List struct {
+	Key   string      `json:"key"`
+	Value interface{} `json:"value"`
+}
