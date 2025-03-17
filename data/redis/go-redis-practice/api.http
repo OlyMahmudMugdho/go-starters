@@ -1,0 +1,32 @@
+### Hash Set
+@base_url = "http://localhost:8080"
+
+
+### Store a hash
+POST http://localhost:8080/hash/hset
+Content-Type: application/json
+
+{
+  "key": "user:1",
+  "value" : {
+    "name": "mugdho",
+    "age": "23"
+  }
+}
+
+### Get a name of a hash
+GET http://localhost:8080/hash/hget?key=user:1&&field=name
+
+### Get a age of a hash
+GET http://localhost:8080/hash/hget?key=user:1&&field=age
+
+
+### Get all fields of a hash
+
+
+### Delete name of the hash
+
+DELETE http://localhost:8080/hash/hdel?key=user:1&&field=name
+
+### Delete age of the hash
+DELETE http://localhost:8080/hash/hdel?key=user:1&&field=age

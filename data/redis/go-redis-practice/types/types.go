@@ -13,3 +13,8 @@ type StringOpsGetResponse struct {
 type StringOpsSetResponse struct {
 	Status string `json:"status"`
 }
+
+type HashRequest struct {
+	Key   string      `json:"key"`
+	Value interface{} `json:"value"`
+}
