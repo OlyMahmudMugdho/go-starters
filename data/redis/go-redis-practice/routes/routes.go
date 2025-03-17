@@ -13,8 +13,10 @@ func RegisterRoutes() *mux.Router {
 	stringHandler := handlers.NewStringHandler()
 
 	router.HandleFunc("/ping", pingHandler.DoPing).Methods("GET")
+
 	router.HandleFunc("/string/set", stringHandler.Set).Methods("POST")
 	router.HandleFunc("/string/get", stringHandler.Get).Methods("GET")
+	router.HandleFunc("/string/delete", stringHandler.Delete).Methods("DELETE")
 
 	return router
 }

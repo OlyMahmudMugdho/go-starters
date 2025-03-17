@@ -60,3 +60,29 @@ func (s *StringHandler) Get(w http.ResponseWriter, r *http.Request) {
 		Value: value,
 	})
 }
+
+func (s *StringHandler) Delete(w http.ResponseWriter, r *http.Request) {
+
+	key := r.URL.Query().Get("key")
+
+	w.Header().Add("Content-Type", "application/json")
+
+	value, err := s.StringOps.Delete(key)
+
+	if err != nil {
+		log.Println(err)
+		w.WriteHeader(http.StatusInternalServerError)
+		json.NewEncoder(w).Encode(err.Error())
+		return
+	}
+
+	response := "deleted"
+
+	if value == 0 {
+		response = "not found"
+	}
+
+	json.NewEncoder(w).Encode(&map[string]string{
+		"status": response,
+	})
+}

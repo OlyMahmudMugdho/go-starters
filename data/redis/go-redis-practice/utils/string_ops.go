@@ -30,3 +30,7 @@ func (s *StringOps) Set(key string, value string) (string, error) {
 func (s *StringOps) Get(key string) (string, error) {
 	return s.RedisClient.Get(s.Context, key).Result()
 }
+
+func (s *StringOps) Delete(key string) (int64, error) {
+	return s.RedisClient.Del(s.Context, key).Result()
+}
