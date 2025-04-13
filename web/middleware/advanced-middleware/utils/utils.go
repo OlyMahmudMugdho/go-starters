@@ -28,8 +28,17 @@ func Method(m string) middlewaretypes.Middleware {
 
 // Chain applies middlewares to a http.HandlerFunc
 func Chain(f http.HandlerFunc, middlewares ...middlewaretypes.Middleware) http.HandlerFunc {
-	for _, m := range middlewares {
-		f = m(f)
+
+	for i := len(middlewares) - 1; i >= 0; i-- {
+		f = middlewares[i](f)
 	}
 	return f
+
+	/*
+		// this code-block will call the last middleware first
+		for _, m := range middlewares {
+			f = m(f)
+		}
+		return f
+	*/
 }
